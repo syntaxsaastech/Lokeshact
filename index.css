@@ -1,0 +1,347 @@
+/* ============================================================
+   BASE RESET
+   ============================================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --text: #222;
+  --text-h: #08060d;
+  --bg: #f4f6f8;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #4CAF50;
+  --accent-bg: rgba(76, 175, 80, 0.1);
+  --accent-border: rgba(76, 175, 80, 0.5);
+
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 16px/145% var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ============================================================
+   ROOT — the ONLY app width controller
+   ============================================================ */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   YOUR APP — 480px mobile-first layout, centered on desktop
+   ============================================================ */
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding-bottom: 70px;
+}
+
+/* Header */
+.app-header {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  color: white;
+  padding: 16px;
+  z-index: 10;
+  box-shadow: 0 4px 12px -4px rgba(46, 125, 50, 0.35);
+}
+
+.app-header h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.date-picker {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e1b1a;
+  font-family: inherit;
+}
+
+/* Main */
+.app-main {
+  flex: 1;
+  padding: 16px;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   FORM
+   ============================================================ */
+.food-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.food-form h2 {
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: #333;
+  letter-spacing: -0.01em;
+}
+
+.food-form input,
+.food-form select {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border: 1.5px solid #e3e6ea;
+  border-radius: 10px;
+  background: #fafafa;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.food-form input:focus,
+.food-form select:focus {
+  border-color: #4CAF50;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.12);
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row select,
+.row input {
+  flex: 1;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn-primary {
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: #4CAF50;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+  touch-action: manipulation;
+  box-shadow: 0 6px 14px -6px rgba(76, 175, 80, 0.45);
+  font-family: inherit;
+}
+
+.btn-primary:active {
+  background: #2E7D32;
+  transform: scale(0.98);
+}
+
+.btn-delete {
+  background: #ffebee;
+  color: #c62828;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.15s;
+  touch-action: manipulation;
+}
+
+.btn-delete:active {
+  background: #ffcdd2;
+  transform: scale(0.92);
+}
+
+/* ============================================================
+   FOOD LIST
+   ============================================================ */
+.food-list h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #666;
+}
+
+.food-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  background: #fafafa;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.food-item:active {
+  transform: scale(0.995);
+  box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.08);
+}
+
+.food-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.meal-emoji {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.food-name {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.food-meta {
+  font-size: 13px;
+  color: #888;
+}
+
+/* Empty state */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+}
+
+.empty p:first-child {
+  font-size: 56px;
+  margin-bottom: 12px;
+}
+
+.hint {
+  font-size: 13px;
+  margin-top: 8px;
+  color: #aaa;
+}
+
+/* ============================================================
+   BOTTOM NAV
+   ============================================================ */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  background: #1e1b1a;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  padding-bottom: calc(8px + env(safe-area-inset-bottom));
+  z-index: 100;
+}
+
+.bottom-nav button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #a1a1a1;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 12px;
+  touch-action: manipulation;
+}
+
+.bottom-nav button span {
+  font-size: 22px;
+}
+
+.bottom-nav button small {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.bottom-nav button:hover,
+.bottom-nav button.active {
+  color: #ffffff;
+  background: #4CAF50;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4);
+}
+
+.bottom-nav button:active {
+  transform: scale(0.95);
+}
+
+/* ============================================================
+   TYPOGRAPHY (kept minimal)
+   ============================================================ */
+h1, h2 {
+  font-family: var(--heading);
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+p {
+  margin: 0;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+  border-radius: 4px;
+  color: var(--text-h);
+}
