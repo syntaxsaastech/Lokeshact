@@ -5,6 +5,7 @@ import FoodList from './src/components/FoodList'
 import BottomNav from './src/components/BottomNav'
 import CaloriesFinder from './src/components/CaloriesFinder'
 import { getFood, addFood, deleteFood, downloadExcel, saveAllToBackend } from './src/services/foodApi'
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 import One from './src/navigate/One'
 import Two from './src/navigate/Two'
@@ -39,6 +40,9 @@ export default function App() {
 
   return (
     <>
+      {/* 👇 Speed Insights is placed here, right at the top */}
+      <SpeedInsights />
+
       <style>{`
         .top-nav-glass {
           position: sticky;
